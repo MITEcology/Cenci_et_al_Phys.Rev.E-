@@ -8,7 +8,9 @@ from scipy import integrate
 ####### 250 realization.
 ####### This first part is slow because we need to solve the SDE at each realization
 ####### In practice we solve (realization)x(n_steps) SDE
-####### The secon half compute the time scale separation within the 2D feasibility domain
+####### The second half compute the time scale separation within the 2D feasibility domain
+####### The second part take little time because we just need to solve a linear system
+####### with no need to integrate the SDE
 
 realization = 250
 expected_transition= []; exploratory_distance = []
