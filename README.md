@@ -1,1 +1,1 @@
-#### To appear on Phys.Rev.E
+#### To appear on Physical Review E
