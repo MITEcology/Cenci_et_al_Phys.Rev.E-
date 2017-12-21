@@ -37,7 +37,7 @@ while run == 0:
     A_k = np.matrix(np.diag(A_k))
     A = A - np.diag(np.diag(A)) + A_k
     A = Normalizza(A)
-    if np.linalg.det(A) > 0.4 and np.linalg.det(A) < 0.41:
+    if np.linalg.det(A) > 0.4 and np.linalg.det(A) < 0.5:
         run = 1
 
 
@@ -116,17 +116,10 @@ run = 0;
 while run == 0:
     b = np.array([A[0,0] - b_increment, A[1,0] + b_increment])
     b = b/np.sum(b)
-    t = np.linspace(0, 3000,  5000)
-
-    def dX_dt(X, t=0):
-            dydt = [X[s]*(b[s] - np.sum(np.dot(A,X)[0,s])) for s in range(0,len(X))]
-            return dydt
-    x0 = np.array(np.repeat(1.,d))
-    deterministic_result = integrate.odeint(dX_dt, x0, t)
-
+    deterministic_result = np.array(np.dot(np.linalg.inv(A),b));
     distance_from_border = distance(b, starting_point)
     exploratory_distance.append(distance_from_border)
-    abundances = np.matrix(np.diag(deterministic_result[np.shape(deterministic_result)[0] - 1, :]))
+    abundances = np.diag(deterministic_result[0])
     J = np.matmul(abundances, A)
     eg.append(separation(J))
     if distance_from_border >= max_dist:
