@@ -53,9 +53,9 @@ print '--- Dimensions?', d
 print 'target distance:', max_dist
 ######################################################
 ######################################################
-n_steps = 80; #### Number of step to go from one side of the other of the domain
+n_steps = 80; #### Number of step to go from one side to the other of the domain
 DeltaB = max_dist/n_steps; ### step size
-extinction_probability = True
+extinction_probability = True ### If this is True the code generate Figure 5.(a)
 if extinction_probability == True:
     run = 0
     b_increment = 0;
