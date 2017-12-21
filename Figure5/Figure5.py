@@ -11,10 +11,8 @@ from mpl_toolkits.mplot3d import Axes3D
 
 realization = 250
 expected_transition= []; exploratory_distance = []
-SS = 600
-
-#############
-d = 2
+SS = 600 ### System size
+d = 2    ### Dimensions
 #############
 ### Few auxiliary functions
 def distance(X,Y):
