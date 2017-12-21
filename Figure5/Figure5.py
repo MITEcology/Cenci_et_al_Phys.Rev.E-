@@ -2,11 +2,12 @@ import numpy as np
 import sdeint
 import pylab as plt
 from scipy import integrate
-from mpl_toolkits.mplot3d import Axes3D
 
 ####### This is the code to reproduce Figure 5 in the main text of the paper. 
 ####### The first half of the code compute the extinction probability over an ensemble of 
-####### 250 realization (slow)
+####### 250 realization.
+####### This first part is slow because we need to solve the SDE at each realization
+####### In practice we solve (realization)x(n_steps) SDE
 ####### The secon half compute the time scale separation within the 2D feasibility domain
 
 realization = 250
