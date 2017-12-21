@@ -2,8 +2,13 @@ import numpy as np
 import sdeint
 import pylab as plt
 from scipy import integrate
-###### Compute the transition probability as a function of the size of the feasibiltiy domain for a symmetric interaction matrix
-###### Run with python -W ignore TransitionProbability.py
+
+###### To generate Figure 4
+###### Compute the transition probability as a function of the size of 
+###### the feasibiltiy domain for a symmetric interaction matrix
+###### Run with python -W ignore ExtinctionProbability.py
+###### Note that the code will be slow becuase of the integration of the SDE and the large number of realization
+###### needed to get a clean curve for the extinction probability
 #############################################################
 expected_transition= []; FeasibilitySize = []
 #### Off-diagonal interactions
@@ -29,7 +34,8 @@ def SizeFeasibilityDomain(X, NormType):
 ###
 k = 0.
 data_points = 40
-print 'Transition Probability in', d, 'dimensions'
+t = np.linspace(0, 3000,  5000)
+print 'Extinction Probability in', d, 'dimensions'
 for z in range(0,data_points):
     print z
     ext = np.zeros(realization)
@@ -45,7 +51,7 @@ for z in range(0,data_points):
         for nr in range(0,np.shape(A)[1]):
             A[:,nr] /= np.linalg.norm(A[:,nr], Norma)
     #######################################################
-    t = np.linspace(0, 3000,  5000)
+
     
     def dX_dt(X, t=0):
         dydt = [X[s]*(b[s] - np.sum(np.dot(A,X)[0,s])) for s in range(0,len(X))]
