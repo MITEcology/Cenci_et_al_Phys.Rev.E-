@@ -38,7 +38,7 @@ while run == 0:
         run = 1
 
 
-print A
+A = np.asmatrix(A) ### Set it as matrix type for later in the SDE
 starting_point = np.array([A[0,0], A[1,0]]) ### One column
 arrival_point = np.array([A[0,1], A[1,1]])  ### The opposite column
 max_dist = distance(starting_point, arrival_point)  ### Distance to travel
@@ -62,14 +62,6 @@ if extinction_probability == True:
         b = b/np.sum(b)
         t = np.linspace(0, 3000,  5000)
         for i in range(0,realization):    
-            def Heaviside(X,Y):
-                if X < 0 or Y < 0:
-                    return 0
-                else:
-                    return 1
-            def dX_dt(X, t=0):
-                dydt = [X[s]*(b[s] - np.sum(np.dot(A,X)[0,s])) for s in range(0,len(X))]
-                return dydt
             def f(X, t):
                 dydt = np.array([X[s]*(b[s] - np.sum(np.dot(A,X)[0,s])) for s in range(0,len(X))])
                 return dydt
