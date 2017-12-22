@@ -110,7 +110,7 @@ while run == 0:
     deterministic_result = np.array(np.dot(np.linalg.inv(A),b));
     distance_from_border = distance(b, starting_point)
     exploratory_distance.append(distance_from_border)
-    abundances = np.diag(deterministic_result)
+    abundances = np.diag(deterministic_result[0])
     J = np.matmul(abundances, A)
     eg.append(separation(J))
     if distance_from_border >= max_dist:
